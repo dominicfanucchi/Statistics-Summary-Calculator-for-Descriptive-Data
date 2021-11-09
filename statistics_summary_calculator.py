@@ -8,10 +8,29 @@
 # DESCRIPTION: IMPLEMENTATION OF A STATISTICS SUMMARY CALCULATOR
 
 # file imports
-import dfanucchi as df
+#import dfanucchi as df
 
 # importing csv module
 import csv
+
+def print_menu():
+    print 30 * "-", "M A I N  M E N U", 30 * "-"
+    print "1.       Count"
+    print "2.       Unique"
+    print "3.       Mean"
+    print "4.       Median"
+    print "5.       Mode"
+    print "6.       Standard Deviation (SD)"
+    print "7.       Variance"
+    print "8.       Minimum"
+    print "9.       20 Percentile (P20)"
+    print "10.      40 Percentile (P40)"
+    print "11.      50 Percentile (P50)"
+    print "12.      60 Percentile (P60)"
+    print "13.      80 Percentile (P80)"
+    print "14.      Maximum"
+    print "15.      End Program"
+    print 78 * "-"
 
 # naming csv files
 rideshare = "Boston_Lyft_Uber_Data.csv"
@@ -47,6 +66,15 @@ for row in rows[:5]:
 		print("%10s"%col),
 	print('\n')
 
-
-df.say_hello()
-
+loop = True
+while loop:
+    print_menu()
+    choice = input("Enter your choice [1-15]: ")
+    if choice == 1:
+        print "Menu 1 has been selected!"
+    elif choice == 2:
+        print "Menu 2 has been selected!"
+    elif choice == 3:
+        print "Menu 3 has been selected!"
+    else:
+        raw_input("Wrong option selection. Enter any key to try again...")
