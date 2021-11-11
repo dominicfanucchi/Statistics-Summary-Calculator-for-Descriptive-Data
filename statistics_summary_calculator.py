@@ -1,14 +1,13 @@
-# COURSE: CMPS 3500
-# CLASS Project
-# PYTHON IMPLEMENTATION OF A CUSTOM STATISTICS SUMMARY CALCULATOR
-# DATE: 11/01/2021
-# STUDENT 1: Dominic Fanucchi
-# STUDENT 2: Ronaldo Mojica
-# STUDENT 3: 
-# DESCRIPTION: IMPLEMENTATION OF A STATISTICS SUMMARY CALCULATOR
-
-# file imports
-#import dfanucchi as df
+#-----------------------------------------------------------------------------#
+# COURSE: CMPS 3500                                                           #
+# CLASS Project                                                               #
+# PYTHON IMPLEMENTATION OF A CUSTOM STATISTICS SUMMARY CALCULATOR             #
+# DATE: 11/01/2021                                                            #
+# STUDENT 1: Dominic Fanucchi                                                 #
+# STUDENT 2: Ronaldo Mojica                                                   #
+# STUDENT 3:                                                                  #
+# DESCRIPTION: IMPLEMENTATION OF A STATISTICS SUMMARY CALCULATOR              #
+#-----------------------------------------------------------------------------#
 
 # importing csv module
 import csv
@@ -53,13 +52,14 @@ with open(sample, 'r') as csvfile:
 		rows.append(row)
 
 	# get total number of rows
-	print("Total number of rows: %d"%(csvreader.line_num))
+	#print("Total number of rows: %d"%(csvreader.line_num))
 
 # printing the field names
 #print('Field names are: ' + ', '.join(field for field in fields))
 
 # printing first 5 rows
-print('\nFirst 5 rows are:\n')
+#print('\nFirst 5 rows are:\n')
+
 #for row in rows[:5]:
 	# parsing each column of a row
 #	for col in row:
