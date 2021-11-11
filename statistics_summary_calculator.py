@@ -71,10 +71,10 @@ while loop:
     print_menu()
     choice = input("Enter your choice [1-15]: ")
     if choice == 1:
-        print "Menu 1 has been selected!"
+        print "Menu 1 has been selected!\n"
     elif choice == 2:
-        print "Menu 2 has been selected!"
+        print "Menu 2 has been selected!\n"
     elif choice == 3:
-        print "Menu 3 has been selected!"
+        print "Menu 3 has been selected!\n"
     else:
         raw_input("Wrong option selection. Enter any key to try again...")
