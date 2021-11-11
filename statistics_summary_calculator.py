@@ -80,6 +80,24 @@ while loop:
         print "Menu 4 has been selected!\n"
     elif choice == 5:
         print "Menu 5 has been selected!\n"
+    elif choice == 6:
+        print "Menu 6 has been selected!\n"
+    elif choice == 7:
+        print "Menu 7 has been selected!\n"
+    elif choice == 8:
+        print "Menu 8 has been selected!\n"
+    elif choice == 9:
+        print "Menu 9 has been selected!\n"
+    elif choice == 10:
+        print "Menu 10 has been selected!\n"
+    elif choice == 11:
+        print "Menu 11 has been selected!\n"
+    elif choice == 12:
+        print "Menu 12 has been selected!\n"
+    elif choice == 13:
+        print "Menu 13 has been selected!\n"
+    elif choice == 14:
+        print "Menu 14 has been selected!\n"
     else:
         raw_input("Wrong option selection. Enter any key to try again...")
         
