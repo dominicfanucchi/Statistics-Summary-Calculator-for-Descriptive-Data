@@ -11,6 +11,7 @@
 
 # importing csv module
 import csv
+import sys
 
 def print_menu():
     print 30 * "-", "M A I N  M E N U", 30 * "-"
@@ -101,12 +102,11 @@ while loop:
     elif choice == 15:
         #print "Menu 15 has been selected!"
         print "!PROGRAM TERMINATED!\n"
+        sys.exit()
 
         #Terminate code completely 
         #Add M key that allows user to go back to menuy options.
         #Add code that takes user back to Menu
-        
-        print "Quit option selected!\n"
     else:
         raw_input("Wrong option selection. Enter any key to try again...")
         
