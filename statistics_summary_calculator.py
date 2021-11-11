@@ -56,7 +56,7 @@ with open(sample, 'r') as csvfile:
 	print("Total number of rows: %d"%(csvreader.line_num))
 
 # printing the field names
-print('Field names are: ' + ', '.join(field for field in fields))
+#print('Field names are: ' + ', '.join(field for field in fields))
 
 # printing first 5 rows
 print('\nFirst 5 rows are:\n')
@@ -98,6 +98,8 @@ while loop:
         print "Menu 13 has been selected!\n"
     elif choice == 14:
         print "Menu 14 has been selected!\n"
+    elif choice == 15:
+        print "Quit option selected!\n"
     else:
         raw_input("Wrong option selection. Enter any key to try again...")
         
