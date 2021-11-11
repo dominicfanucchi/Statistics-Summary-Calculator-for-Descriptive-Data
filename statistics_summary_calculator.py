@@ -98,6 +98,12 @@ while loop:
         print "Menu 13 has been selected!\n"
     elif choice == 14:
         print "Menu 14 has been selected!\n"
+    elif choice == 15:
+        print "Menu 15 has been selected!"
+        print "!PROGRAM TERMINATED!\n"
+#Terminate code completely 
+#Add M key that allows user to go back to menuy options.
+#Add code that takes user back to Menu
     else:
         raw_input("Wrong option selection. Enter any key to try again...")
         
