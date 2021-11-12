@@ -36,6 +36,34 @@ def print_menu():
     print "15.       End Program"
     print 80 * "-"
 
+def my_mean():
+    return sum() / len()
+
+def my_median():
+    n = len()
+    index = n // 12
+    if n % 2:
+        return sorted()[index]
+    return sum(sorted()[index - 1:index + 1]) / 2
+
+from collections import Counter
+def my_mode():
+    c = Counter()
+    return [k for k, v in c.items() if v== c.most_common(1)[0][1]]
+
+# def my_20P():
+
+# def my_40P():
+
+# # the median is the 50th percentile: the point in the data where 50 percent of
+# # the data fall below that point, and 50 percent fall above it
+# def my_50P():
+#     my_median()
+# def my_60P():
+
+# def my_80P():
+
+
 # naming csv files
 rideshare = "Boston_Lyft_Uber_Data.csv"
 sample = "InputDataSample.csv"
@@ -71,7 +99,26 @@ with open(sample, 'r') as csvfile:
 #		print("%10s"%col),
 #	print('\n')
 
-loop = True
+print("Descriptor    Column A    Column B")
+print("**********    ********    ********")
+print('Count         {a:8d}    {b:8d}'.format(a=3, b=5))
+print('Unique        {a:8d}    {b:8d}'.format(a=3, b=5))
+print('Mean          {a:8d}    {b:8d}'.format(a=3, b=5))
+print('Median        {a:8d}    {b:8d}'.format(a=3, b=5))
+print('Mode          {a:8d}    {b:8d}'.format(a=3, b=5))
+print('SD            {a:8d}    {b:8d}'.format(a=3, b=5))
+print('Variance      {a:8d}    {b:8d}'.format(a=3, b=5))
+print('Minimum       {a:8d}    {b:8d}'.format(a=3, b=5))
+print('P20           {a:8d}    {b:8d}'.format(a=3, b=5))
+print('P40           {a:8d}    {b:8d}'.format(a=3, b=5))
+print('P50           {a:8d}    {b:8d}'.format(a=3, b=5))
+print('P60           {a:8d}    {b:8d}'.format(a=3, b=5))
+print('P80           {a:8d}    {b:8d}'.format(a=3, b=5))
+print('Maximum       {a:8d}    {b:8d}'.format(a=3, b=5))
+
+# set to true to see menu
+# turned off for sample data testing
+loop = False
 while loop:
     print_menu()
     choice = input("Enter your choice [1-15]: ")
