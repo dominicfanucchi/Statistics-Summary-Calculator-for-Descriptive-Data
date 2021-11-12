@@ -36,19 +36,19 @@ def print_menu():
     print "15.       End Program"
     print 80 * "-"
 
-def my_mean():
-    return sum() / len()
+def my_mean(s):
+    return sum(s) / len(s)
 
-def my_median():
-    n = len()
-    index = n // 12
+def my_median(s):
+    n = len(s)
+    index = n // 2
     if n % 2:
-        return sorted()[index]
-    return sum(sorted()[index - 1:index + 1]) / 2
+        return sorted(s)[index]
+    return sum(sorted(s)[index - 1:index + 1]) / 2
 
 from collections import Counter
-def my_mode():
-    c = Counter()
+def my_mode(s):
+    c = Counter(s)
     return [k for k, v in c.items() if v== c.most_common(1)[0][1]]
 
 # def my_20P():
@@ -99,22 +99,26 @@ with open(sample, 'r') as csvfile:
 #		print("%10s"%col),
 #	print('\n')
 
+sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
+sample_data_B = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5, 10, 2, 13, 20, 5, 2]
+
+
 print("Descriptor    Column A    Column B")
 print("**********    ********    ********")
-print('Count         {a:8d}    {b:8d}'.format(a=3, b=5))
-print('Unique        {a:8d}    {b:8d}'.format(a=3, b=5))
-print('Mean          {a:8d}    {b:8d}'.format(a=3, b=5))
-print('Median        {a:8d}    {b:8d}'.format(a=3, b=5))
-print('Mode          {a:8d}    {b:8d}'.format(a=3, b=5))
-print('SD            {a:8d}    {b:8d}'.format(a=3, b=5))
-print('Variance      {a:8d}    {b:8d}'.format(a=3, b=5))
-print('Minimum       {a:8d}    {b:8d}'.format(a=3, b=5))
-print('P20           {a:8d}    {b:8d}'.format(a=3, b=5))
-print('P40           {a:8d}    {b:8d}'.format(a=3, b=5))
-print('P50           {a:8d}    {b:8d}'.format(a=3, b=5))
-print('P60           {a:8d}    {b:8d}'.format(a=3, b=5))
-print('P80           {a:8d}    {b:8d}'.format(a=3, b=5))
-print('Maximum       {a:8d}    {b:8d}'.format(a=3, b=5))
+print('Count         {a:8d}    {b:8d}'.format(a=0, b=0))
+print('Unique        {a:8d}    {b:8d}'.format(a=0, b=0))
+print('Mean          {a:8d}    {b:8d}'.format(a = my_mean(sample_data_A), b = my_mean(sample_data_B)))
+print('Median        {a:8d}    {b:8d}'.format(a = my_median(sample_data_A), b = my_median(sample_data_B)))
+print('Mode          {a:}    {b:}'.format(a = my_mode(sample_data_A), b = my_mode(sample_data_B)))
+print('SD            {a:8d}    {b:8d}'.format(a=0, b=0))
+print('Variance      {a:8d}    {b:8d}'.format(a=0, b=0))
+print('Minimum       {a:8d}    {b:8d}'.format(a=0, b=0))
+print('P20           {a:8d}    {b:8d}'.format(a=0, b=0))
+print('P40           {a:8d}    {b:8d}'.format(a=0, b=0))
+print('P50           {a:8d}    {b:8d}'.format(a=0, b=0))
+print('P60           {a:8d}    {b:8d}'.format(a=0, b=0))
+print('P80           {a:8d}    {b:8d}'.format(a=0, b=0))
+print('Maximum       {a:8d}    {b:8d}'.format(a=0, b=0))
 
 # set to true to see menu
 # turned off for sample data testing
