@@ -9,10 +9,7 @@
 # DESCRIPTION: IMPLEMENTATION OF A STATISTICS SUMMARY CALCULATOR              #
 #-----------------------------------------------------------------------------#
 
-# importing csv module
-import csv
-import sys
-import os
+import csv, sys, os, math
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -51,18 +48,88 @@ def my_mode(s):
     c = Counter(s)
     return [k for k, v in c.items() if v== c.most_common(1)[0][1]]
 
-# def my_20P():
+# TODO : ask walter if indexing should begin at 1?
+def my_20P(s):
+    return sorted(s)[int(math.ceil(0.2 * len(s)))]
+    # use this return if indexing begins at 1
+    # return sorted(s)[int(math.ceil(0.4 * len(s)))-1]
 
-# def my_40P():
+def my_40P(s):
+    return sorted(s)[int(math.ceil(0.4 * len(s)))]
+    # use this return if indexing begins at 1
+    # return sorted(s)[int(math.ceil(0.4 * len(s)))-1]
 
-# # the median is the 50th percentile: the point in the data where 50 percent of
-# # the data fall below that point, and 50 percent fall above it
-# def my_50P():
-#     my_median()
-# def my_60P():
+def my_50P(s):
+    return sorted(s)[int(math.ceil(0.5 * len(s)))]
+    # use this return if indexing begins at 1
+    # return sorted(s)[int(math.ceil(0.5 * len(s)))-1]
 
-# def my_80P():
+def my_60P(s):
+    return sorted(s)[int(math.ceil(0.6 * len(s)))]
+    # use this return if indexing begins at 1
+    # return sorted(s)[int(math.ceil(0.6 * len(s)))-1]
 
+def my_80P(s):
+    return sorted(s)[int(math.ceil(0.8 * len(s)))]
+    # use this return if indexing begins at 1
+    # return sorted(s)[int(math.ceil(0.8 * len(s)))-1]
+
+def my_count(s):
+    return len(s)
+    # ask if using built in functions is okay
+    # if not, write function definition below
+
+def my_min(s):
+    return min(s)
+    # ask if using built in functions is okay
+    # if not, write function definition below
+
+def my_max(s):
+    return max(s)
+    # ask if using built in functions is okay
+    # if not, write function definition below
+
+def my_variance(s):
+    # step 1:
+    ordered = sorted(s)
+    n = my_mean(ordered)
+    # step 2:
+    difference = [0] * len(s)
+    for i in range(len(difference)):
+        difference[i] = ordered[i] - n
+    # step 3:
+    for i in range(len(difference)):
+        difference[i] = difference[i] ** 2
+    # step 4:
+    sd_sum = 0.0
+    for i in range(len(difference)):
+        sd_sum += difference[i]
+    # step 5:
+    variance = sd_sum / len(s) # <---- this is the variance
+    return variance
+    # step 6:
+    # return sd = variance ** 2
+
+def my_standard_deviation(s):
+    # step 1:
+    ordered = sorted(s)
+    n = my_mean(ordered)
+    # step 2:
+    difference = [0] * len(s)
+    for i in range(len(difference)):
+        difference[i] = ordered[i] - n
+    # step 3:
+    for i in range(len(difference)):
+        difference[i] = difference[i] ** 2
+    # step 4:
+    sd_sum = 0.0
+    for i in range(len(difference)):
+        sd_sum += difference[i]
+    # step 5:
+    variance = sd_sum / len(s) # <---- this is the variance
+    # step 6:
+    sd = variance ** 2
+    return sd
 
 # naming csv files
 rideshare = "Boston_Lyft_Uber_Data.csv"
@@ -100,25 +167,27 @@ with open(sample, 'r') as csvfile:
 #	print('\n')
 
 sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
-sample_data_B = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5, 10, 2, 13, 20, 5, 2]
-
+sample_data_B = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5, 10, 2, 13, 20, 5, 2, 15, 1, 0]
+sample_data_C = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 print("Descriptor    Column A    Column B")
 print("**********    ********    ********")
-print('Count         {a:8d}    {b:8d}'.format(a=0, b=0))
-print('Unique        {a:8d}    {b:8d}'.format(a=0, b=0))
+print('Count         {a:8d}    {b:8d}'.format(a = my_count(sample_data_A), b = my_count(sample_data_B)))
+print('Unique        {a:8d}    {b:8d}'.format(a = 0, b = 0) + ' <-- requires data to be in row/col form find and not an array')
 print('Mean          {a:8d}    {b:8d}'.format(a = my_mean(sample_data_A), b = my_mean(sample_data_B)))
 print('Median        {a:8d}    {b:8d}'.format(a = my_median(sample_data_A), b = my_median(sample_data_B)))
 print('Mode          {a:}    {b:}'.format(a = my_mode(sample_data_A), b = my_mode(sample_data_B)))
-print('SD            {a:8d}    {b:8d}'.format(a=0, b=0))
-print('Variance      {a:8d}    {b:8d}'.format(a=0, b=0))
-print('Minimum       {a:8d}    {b:8d}'.format(a=0, b=0))
-print('P20           {a:8d}    {b:8d}'.format(a=0, b=0))
-print('P40           {a:8d}    {b:8d}'.format(a=0, b=0))
-print('P50           {a:8d}    {b:8d}'.format(a=0, b=0))
-print('P60           {a:8d}    {b:8d}'.format(a=0, b=0))
-print('P80           {a:8d}    {b:8d}'.format(a=0, b=0))
-print('Maximum       {a:8d}    {b:8d}'.format(a=0, b=0))
+print('SD            {a:8.2f}    {b:8.2f}'.format(a = my_standard_deviation(sample_data_A), b = my_standard_deviation(sample_data_B)))
+print('Variance      {a:8.2f}    {b:8.2f}'.format(a = my_variance(sample_data_A), b = my_variance(sample_data_B)))
+print('Minimum       {a:8d}    {b:8d}'.format(a = my_min(sample_data_A), b = my_min(sample_data_B)))
+print('P20           {a:8d}    {b:8d}'.format(a = my_20P(sample_data_A), b = my_20P(sample_data_B)))
+print('P40           {a:8d}    {b:8d}'.format(a = my_40P(sample_data_A), b = my_40P(sample_data_B)))
+print('P50           {a:8d}    {b:8d}'.format(a = my_50P(sample_data_A), b = my_50P(sample_data_B)))
+print('P60           {a:8d}    {b:8d}'.format(a = my_60P(sample_data_A), b = my_60P(sample_data_B)))
+print('P80           {a:8d}    {b:8d}'.format(a = my_80P(sample_data_A), b = my_80P(sample_data_B)))
+print('Maximum       {a:8d}    {b:8d}'.format(a = my_max(sample_data_A), b = my_max(sample_data_B)))
+print ""
+
 
 # set to true to see menu
 # turned off for sample data testing
