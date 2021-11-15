@@ -131,6 +131,9 @@ def my_standard_deviation(s):
     sd = variance ** 2
     return sd
 
+def unique(s):
+    print(Counter(s))
+
 # naming csv files
 rideshare = "Boston_Lyft_Uber_Data.csv"
 sample = "InputDataSample.csv"
@@ -166,6 +169,7 @@ with open(sample, 'r') as csvfile:
 #		print("%10s"%col),
 #	print('\n')
 
+
 sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
 sample_data_B = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5, 10, 2, 13, 20, 5, 2, 15, 1, 0]
 sample_data_C = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -187,6 +191,26 @@ print('P60           {a:8d}    {b:8d}'.format(a = my_60P(sample_data_A), b = my_
 print('P80           {a:8d}    {b:8d}'.format(a = my_80P(sample_data_A), b = my_80P(sample_data_B)))
 print('Maximum       {a:8d}    {b:8d}'.format(a = my_max(sample_data_A), b = my_max(sample_data_B)))
 print ""
+
+#Get unique values from list <-----Unique
+#
+from collections import Counter
+
+def unique(sample_data_A):
+
+    print(Counter(sample_data_A))
+
+#list1 = [10, 20, 10, 30, 40, 40]
+#sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
+print("The unique values from Column A are: ")
+unique(sample_data_A)
+
+#list2 = [1, 2, 1, 1, 3, 4, 3, 3, 5]
+#sample_data_B = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5, 10, 2, 13, 20, 5, 2, 15, 1, 0]
+print("\nThe unique values from Column B are: ")
+unique(sample_data_B)
+print "\n"
+
 
 
 # set to true to see menu
@@ -248,5 +272,5 @@ while loop:
         #Add M key that allows user to go back to menuy options.
         #Add code that takes user back to Menu
     else:
-        raw_input("Wrong option selection. Enter any key to try again...")
+        raw_input("Wrong option selection. Please enter any key to try again...")
         
