@@ -131,7 +131,7 @@ def my_standard_deviation(s):
     sd = variance ** 2
     return sd
 
-def unique(s):
+def my_unique(s):
     return Counter(s)
 
 # naming csv files
@@ -177,7 +177,7 @@ sample_data_C = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 print("Descriptor    Column A    Column B")
 print("**********    ********    ********")
 print('Count         {a:8d}    {b:8d}'.format(a = my_count(sample_data_A), b = my_count(sample_data_B)))
-print('Unique        {a:8s}    {b:8s}'.format(a = unique(sample_data_A), b = unique(sample_data_B)))
+print('Unique        {a:8s}    {b:8s}'.format(a = my_unique(sample_data_A), b = my_unique(sample_data_B)))
 print('Mean          {a:8d}    {b:8d}'.format(a = my_mean(sample_data_A), b = my_mean(sample_data_B)))
 print('Median        {a:8d}    {b:8d}'.format(a = my_median(sample_data_A), b = my_median(sample_data_B)))
 print('Mode          {a:8s}    {b:8s}'.format(a = my_mode(sample_data_A), b = my_mode(sample_data_B)))
@@ -192,12 +192,18 @@ print('P80           {a:8d}    {b:8d}'.format(a = my_80P(sample_data_A), b = my_
 print('Maximum       {a:8d}    {b:8d}'.format(a = my_max(sample_data_A), b = my_max(sample_data_B)))
 print ""
 
-print("The unique values from Column A are: ")
-print unique(sample_data_A)
-
-print("\nThe unique values from Column B are: ")
-print unique(sample_data_B)
-print "\n"
+#actual unique count<----------------gives the count of remaining unique numbers
+lst = [1, 2, 3, 4, 1, 2, 6, 7]
+print('Input list: ', lst)
+lst1 = []
+count = 0
+for i in lst:
+    if i not in lst1:
+        count = count + 1
+        lst1.append(i)
+        print('Output list: ',lst1)
+        print('No. of unique items are: ', count)
+print ""
 
 # set to true to see menu
 # turned off for sample data testing
