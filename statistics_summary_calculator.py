@@ -132,7 +132,7 @@ def my_standard_deviation(s):
     return sd
 
 def unique(s):
-    print(Counter(s))
+    return Counter(s)
 
 # naming csv files
 rideshare = "Boston_Lyft_Uber_Data.csv"
@@ -155,7 +155,7 @@ with open(sample, 'r') as csvfile:
 		rows.append(row)
 
 	# get total number of rows
-	#print("Total number of rows: %d"%(csvreader.line_num))
+	print("Total number of rows: %d\n"%(csvreader.line_num))
 
 # printing the field names
 #print('Field names are: ' + ', '.join(field for field in fields))
@@ -177,10 +177,10 @@ sample_data_C = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 print("Descriptor    Column A    Column B")
 print("**********    ********    ********")
 print('Count         {a:8d}    {b:8d}'.format(a = my_count(sample_data_A), b = my_count(sample_data_B)))
-print('Unique        {a:8d}    {b:8d}'.format(a = 0, b = 0) + ' <-- requires data to be in row/col form find and not an array')
+print('Unique        {a:8s}    {b:8s}'.format(a = unique(sample_data_A), b = unique(sample_data_B)))
 print('Mean          {a:8d}    {b:8d}'.format(a = my_mean(sample_data_A), b = my_mean(sample_data_B)))
 print('Median        {a:8d}    {b:8d}'.format(a = my_median(sample_data_A), b = my_median(sample_data_B)))
-print('Mode          {a:}    {b:}'.format(a = my_mode(sample_data_A), b = my_mode(sample_data_B)))
+print('Mode          {a:8s}    {b:8s}'.format(a = my_mode(sample_data_A), b = my_mode(sample_data_B)))
 print('SD            {a:8.2f}    {b:8.2f}'.format(a = my_standard_deviation(sample_data_A), b = my_standard_deviation(sample_data_B)))
 print('Variance      {a:8.2f}    {b:8.2f}'.format(a = my_variance(sample_data_A), b = my_variance(sample_data_B)))
 print('Minimum       {a:8d}    {b:8d}'.format(a = my_min(sample_data_A), b = my_min(sample_data_B)))
@@ -192,26 +192,12 @@ print('P80           {a:8d}    {b:8d}'.format(a = my_80P(sample_data_A), b = my_
 print('Maximum       {a:8d}    {b:8d}'.format(a = my_max(sample_data_A), b = my_max(sample_data_B)))
 print ""
 
-#Get unique values from list <-----Unique
-#
-from collections import Counter
-
-def unique(sample_data_A):
-
-    print(Counter(sample_data_A))
-
-#list1 = [10, 20, 10, 30, 40, 40]
-#sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
 print("The unique values from Column A are: ")
-unique(sample_data_A)
+print unique(sample_data_A)
 
-#list2 = [1, 2, 1, 1, 3, 4, 3, 3, 5]
-#sample_data_B = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5, 10, 2, 13, 20, 5, 2, 15, 1, 0]
 print("\nThe unique values from Column B are: ")
-unique(sample_data_B)
+print unique(sample_data_B)
 print "\n"
-
-
 
 # set to true to see menu
 # turned off for sample data testing
