@@ -131,8 +131,10 @@ def my_standard_deviation(s):
     sd = variance ** 2
     return sd
 
-def unique(s):
+def my_unique(s):
     print(Counter(s))
+#    count = 0
+
 
 # naming csv files
 rideshare = "Boston_Lyft_Uber_Data.csv"
@@ -177,7 +179,7 @@ sample_data_C = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 print("Descriptor    Column A    Column B")
 print("**********    ********    ********")
 print('Count         {a:8d}    {b:8d}'.format(a = my_count(sample_data_A), b = my_count(sample_data_B)))
-print('Unique        {a:8d}    {b:8d}'.format(a = 0, b = 0) + ' <-- requires data to be in row/col form find and not an array')
+print('Unique        {a:8s}    {b:8s}'.format(a = my_unique(sample_data_A), b = my_unique(sample_data_B)))
 print('Mean          {a:8d}    {b:8d}'.format(a = my_mean(sample_data_A), b = my_mean(sample_data_B)))
 print('Median        {a:8d}    {b:8d}'.format(a = my_median(sample_data_A), b = my_median(sample_data_B)))
 print('Mode          {a:}    {b:}'.format(a = my_mode(sample_data_A), b = my_mode(sample_data_B)))
@@ -194,21 +196,38 @@ print ""
 
 #Get unique values from list <-----Unique
 #
-from collections import Counter
+#from collections import Counter
 
-def unique(sample_data_A):
+#def unique(sample_data_A):
 
-    print(Counter(sample_data_A))
+#    print(Counter(sample_data_A))
 
 #list1 = [10, 20, 10, 30, 40, 40]
 #sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
-print("The unique values from Column A are: ")
-unique(sample_data_A)
+#print("The unique values from Column A are: ")
+#unique(sample_data_A)
 
 #list2 = [1, 2, 1, 1, 3, 4, 3, 3, 5]
 #sample_data_B = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5, 10, 2, 13, 20, 5, 2, 15, 1, 0]
-print("\nThe unique values from Column B are: ")
-unique(sample_data_B)
+#print("\nThe unique values from Column B are: ")
+#unique(sample_data_B)
+
+#actual unique count<----------------gives the count of remaining unique numbers
+lst = [1, 2, 3, 4, 1, 2, 6, 7]
+print('Input list: ', lst)
+
+lst1 = []
+
+count = 0
+
+for i in lst:
+    if i not in lst1:
+        count = count + 1
+        lst1.append(i)
+
+        print('Output list: ',lst1)
+        print('No. of unique items are: ', count)
+
 print "\n"
 
 
