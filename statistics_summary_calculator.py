@@ -5,7 +5,7 @@
 # DATE: 11/01/2021                                                            #
 # STUDENT 1: Dominic Fanucchi                                                 #
 # STUDENT 2: Ronaldo Mojica                                                   #
-# STUDENT 3:                                                                  #
+# STUDENT 3: Arjun Ynostroza                                                  #
 # DESCRIPTION: IMPLEMENTATION OF A STATISTICS SUMMARY CALCULATOR              #
 #-----------------------------------------------------------------------------#
 
