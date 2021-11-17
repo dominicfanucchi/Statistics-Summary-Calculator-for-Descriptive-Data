@@ -158,16 +158,17 @@ with open(sample, 'r') as csvfile:
 	print("Total number of rows: %d\n"%(csvreader.line_num))
 
 # printing the field names
-#print('Field names are: ' + ', '.join(field for field in fields))
+print('Field names are: ' + ', '.join(field for field in fields))
 
 # printing first 5 rows
-#print('\nFirst 5 rows are:\n')
+print('\nFirst 5 rows are:\n')
 
-#for row in rows[:5]:
+for row in rows[:5]:
 	# parsing each column of a row
-#	for col in row:
-#		print("%10s"%col),
-#	print('\n')
+	for col in row:
+		if col.isdigit():
+			print("%10s"%col),
+	print('\n')
 
 
 sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
@@ -194,16 +195,16 @@ print ""
 
 #actual unique count<----------------gives the count of remaining unique numbers
 lst = [1, 2, 3, 4, 1, 2, 6, 7]
-print('Input list: ', lst)
+print("Input list: ", lst)
 lst1 = []
 count = 0
 for i in lst:
     if i not in lst1:
         count = count + 1
         lst1.append(i)
-        print('Output list: ',lst1)
-        print('No. of unique items are: ', count)
-print ""
+
+print("Output list: ",lst1)
+print('No. of unique items are: \n', count)
 
 # set to true to see menu
 # turned off for sample data testing
