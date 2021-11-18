@@ -196,14 +196,14 @@ print ""
 #actual unique count<----------------gives the count of remaining unique numbers
 sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
 print("Input list: ", sample_data_A)
-sample_data_A = []
+lst1= []
 count = 0
 for i in sample_data_A:
-    if i not in sample_data_A:
+    if i not in lst1:
         count = count + 1
-        sample_data_A.append(i)
+        lst1.append(i)
 
-print("Output list: ",sample_data_A)
+print("Output list: ",lst1)
 print('No. of unique items are: \n', count)
 
 # set to true to see menu
