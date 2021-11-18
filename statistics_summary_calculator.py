@@ -194,8 +194,7 @@ print('Maximum       {a:8d}    {b:8d}'.format(a = my_max(sample_data_A), b = my_
 print ""
 
 #actual unique count<----------------gives the count of remaining unique numbers
-sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
-print("Input list: ", sample_data_A)
+print("Input list: %s" % sample_data_A)
 lst1= []
 count = 0
 for i in sample_data_A:
@@ -203,8 +202,8 @@ for i in sample_data_A:
         count = count + 1
         lst1.append(i)
 
-print("Output list: ",lst1)
-print('No. of unique items are: \n', count)
+print('Output list: %s' % lst1)
+print('No. of unique items are: %d' % count)
 
 # set to true to see menu
 # turned off for sample data testing
