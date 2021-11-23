@@ -9,7 +9,7 @@
 # DESCRIPTION: IMPLEMENTATION OF A STATISTICS SUMMARY CALCULATOR              #
 #-----------------------------------------------------------------------------#
 
-import csv, sys, os, math
+import csv, sys, os, math, array as arr
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -48,7 +48,6 @@ def my_mode(s):
     c = Counter(s)
     return [k for k, v in c.items() if v== c.most_common(1)[0][1]]
 
-# TODO : ask walter if indexing should begin at 1?
 def my_20P(s):
     return sorted(s)[int(math.ceil(0.2 * len(s)))]
     # use this return if indexing begins at 1
@@ -138,37 +137,50 @@ def my_unique(s):
 rideshare = "Boston_Lyft_Uber_Data.csv"
 sample = "InputDataSample.csv"
 
-# initializing the titles and rows list
-fields = []
-rows = []
+sample_read= open(sample, 'r')
+file = csv.DictReader(sample_read)
 
-# reading csv files
-with open(sample, 'r') as csvfile:
-	# creating a csv reader object
-	csvreader = csv.reader(csvfile)
+col_A = arr.array('i', [])
+col_B = arr.array('i', [])
 
-	# extracting field names through first row
-	fields = next(csvreader)
+for col in file:
+    col_A.append(int(col['Column A']))
+    col_B.append(int(col['Column B']))
 
-	# extracting each data row one by one
-	for row in csvreader:
-		rows.append(row)
+#print('column A: ', col_A)
+#print('column B: ', col_B)
 
-	# get total number of rows
-	print("Total number of rows: %d\n"%(csvreader.line_num))
+# # initializing the titles and rows list
+# fields = []
+# rows = []
 
-# printing the field names
-print('Field names are: ' + ', '.join(field for field in fields))
+# # reading csv files
+# with open(sample, 'r') as csvfile:
+# 	# creating a csv reader object
+# 	csvreader = csv.reader(csvfile)
 
-# printing first 5 rows
-print('\nFirst 5 rows are:\n')
+# 	# extracting field names through first row
+# 	fields = next(csvreader)
 
-for row in rows[:5]:
-	# parsing each column of a row
-	for col in row:
-		if col.isdigit():
-			print("%10s"%col),
-	print('\n')
+# 	# extracting each data row one by one
+# 	for row in csvreader:
+# 		rows.append(row)
+
+# 	# get total number of rows
+# 	print("Total number of rows: %d\n"%(csvreader.line_num))
+
+# # printing the field names
+# print('Field names are: ' + ', '.join(field for field in fields))
+
+# # printing first 5 rows
+# print('\nFirst 5 rows are:\n')
+
+# for row in rows[:5]:
+# 	# parsing each column of a row
+# 	for col in row:
+# 		if col.isdigit():
+# 			print("%10s"%col),
+# 	print('\n')
 
 
 sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
@@ -177,20 +189,20 @@ sample_data_C = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 print("Descriptor    Column A    Column B")
 print("**********    ********    ********")
-print('Count         {a:8d}    {b:8d}'.format(a = my_count(sample_data_A), b = my_count(sample_data_B)))
+print('Count         {a:8d}    {b:8d}'.format(a = my_count(col_A), b = my_count(col_B)))
 print('Unique        {a:8s}    {b:8s}'.format(a = my_unique(sample_data_A), b = my_unique(sample_data_B)))
-print('Mean          {a:8d}    {b:8d}'.format(a = my_mean(sample_data_A), b = my_mean(sample_data_B)))
-print('Median        {a:8d}    {b:8d}'.format(a = my_median(sample_data_A), b = my_median(sample_data_B)))
-print('Mode          {a:8s}    {b:8s}'.format(a = my_mode(sample_data_A), b = my_mode(sample_data_B)))
-print('SD            {a:8.2f}    {b:8.2f}'.format(a = my_standard_deviation(sample_data_A), b = my_standard_deviation(sample_data_B)))
-print('Variance      {a:8.2f}    {b:8.2f}'.format(a = my_variance(sample_data_A), b = my_variance(sample_data_B)))
-print('Minimum       {a:8d}    {b:8d}'.format(a = my_min(sample_data_A), b = my_min(sample_data_B)))
-print('P20           {a:8d}    {b:8d}'.format(a = my_20P(sample_data_A), b = my_20P(sample_data_B)))
-print('P40           {a:8d}    {b:8d}'.format(a = my_40P(sample_data_A), b = my_40P(sample_data_B)))
-print('P50           {a:8d}    {b:8d}'.format(a = my_50P(sample_data_A), b = my_50P(sample_data_B)))
-print('P60           {a:8d}    {b:8d}'.format(a = my_60P(sample_data_A), b = my_60P(sample_data_B)))
-print('P80           {a:8d}    {b:8d}'.format(a = my_80P(sample_data_A), b = my_80P(sample_data_B)))
-print('Maximum       {a:8d}    {b:8d}'.format(a = my_max(sample_data_A), b = my_max(sample_data_B)))
+print('Mean          {a:8d}    {b:8d}'.format(a = my_mean(col_A), b = my_mean(col_B)))
+print('Median        {a:8d}    {b:8d}'.format(a = my_median(col_A), b = my_median(col_B)))
+print('Mode          {a:8s}    {b:8s}'.format(a = my_mode(col_A), b = my_mode(col_B)))
+print('SD            {a:8.2f}    {b:8.2f}'.format(a = my_standard_deviation(col_A), b = my_standard_deviation(col_B)))
+print('Variance      {a:8.2f}    {b:8.2f}'.format(a = my_variance(col_A), b = my_variance(col_B)))
+print('Minimum       {a:8d}    {b:8d}'.format(a = my_min(col_A), b = my_min(col_B)))
+print('P20           {a:8d}    {b:8d}'.format(a = my_20P(col_A), b = my_20P(col_B)))
+print('P40           {a:8d}    {b:8d}'.format(a = my_40P(col_A), b = my_40P(col_B)))
+print('P50           {a:8d}    {b:8d}'.format(a = my_50P(col_A), b = my_50P(col_B)))
+print('P60           {a:8d}    {b:8d}'.format(a = my_60P(col_A), b = my_60P(col_B)))
+print('P80           {a:8d}    {b:8d}'.format(a = my_80P(col_A), b = my_80P(col_B)))
+print('Maximum       {a:8d}    {b:8d}'.format(a = my_max(col_A), b = my_max(col_B)))
 print ""
 
 #actual unique count<----------------gives the count of remaining unique numbers
