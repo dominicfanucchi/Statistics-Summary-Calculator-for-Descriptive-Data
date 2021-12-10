@@ -9,10 +9,22 @@
 # DESCRIPTION: IMPLEMENTATION OF A STATISTICS SUMMARY CALCULATOR              #
 #-----------------------------------------------------------------------------#
 
-import csv, sys, os, math, array as arr
+import csv, sys, os, math, array as arr, traceback
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+def my_len(s):
+    counter = 0
+    for item in s:
+        counter+=1
+    return counter
+
+def my_sum(s):
+    total = 0
+    for count in s:
+        total += s
+    return total
 
 def print_menu():
     print 31 * "-", "M A I N  M E N U", 31 * "-"
@@ -34,10 +46,10 @@ def print_menu():
     print 80 * "-"
 
 def my_mean(s):
-    return sum(s) / len(s)
+    return sum(s) / my_len(s)
 
 def my_median(s):
-    n = len(s)
+    n = my_len(s)
     index = n // 2
     if n % 2:
         return sorted(s)[index]
@@ -74,7 +86,7 @@ def my_80P(s):
     # return sorted(s)[int(math.ceil(0.8 * len(s)))-1]
 
 def my_count(s):
-    return len(s)
+    return my_len(s)
     # ask if using built in functions is okay
     # if not, write function definition below
 
@@ -82,7 +94,7 @@ def my_min(s):
     return min(s)
     # ask if using built in functions is okay
     # if not, write function definition below
-
+    
 def my_max(s):
     return max(s)
     # ask if using built in functions is okay
@@ -93,18 +105,18 @@ def my_variance(s):
     ordered = sorted(s)
     n = my_mean(ordered)
     # step 2:
-    difference = [0] * len(s)
-    for i in range(len(difference)):
+    difference = [0] * my_len(s)
+    for i in range(my_len(difference)):
         difference[i] = ordered[i] - n
     # step 3:
-    for i in range(len(difference)):
+    for i in range(my_len(difference)):
         difference[i] = difference[i] ** 2
     # step 4:
     sd_sum = 0.0
-    for i in range(len(difference)):
+    for i in range(my_len(difference)):
         sd_sum += difference[i]
     # step 5:
-    variance = sd_sum / len(s) # <---- this is the variance
+    variance = sd_sum / my_len(s) # <---- this is the variance
     return variance
     # step 6:
     # return sd = variance ** 2
@@ -114,24 +126,71 @@ def my_standard_deviation(s):
     ordered = sorted(s)
     n = my_mean(ordered)
     # step 2:
-    difference = [0] * len(s)
-    for i in range(len(difference)):
+    difference = [0] * my_len(s)
+    for i in range(my_len(difference)):
         difference[i] = ordered[i] - n
     # step 3:
-    for i in range(len(difference)):
+    for i in range(my_len(difference)):
         difference[i] = difference[i] ** 2
     # step 4:
     sd_sum = 0.0
-    for i in range(len(difference)):
+    for i in range(my_len(difference)):
         sd_sum += difference[i]
     # step 5:
-    variance = sd_sum / len(s) # <---- this is the variance
+    variance = sd_sum / my_len(s) # <---- this is the variance
     # step 6:
     sd = variance ** 2
     return sd
 
 def my_unique(s):
     return Counter(s)
+
+from random import randint as random
+def my_quicksort(s):
+    # if the input array is less than two elements then return the array
+    if my_len(s) < 2:
+        return s
+
+    # array's to hold elements while being sorted
+    low, same, high = [], [], []
+
+    # selecting pivot element at random
+    pivot = s[random(0, my_len(s) - 1)]
+
+    for item in s:
+        # Elements that are smaller than the `pivot` go to the 'low' list.
+        # Elements that are larger than 'pivot' go to the 'high' list.
+        # Elements that are equal to 'pivot' go to the 'same' list.
+        if item < pivot:
+            low.append(item)
+        elif item == pivot:
+            same.append(item)
+        elif item > pivot:
+            high.append(item)
+
+    return my_quicksort(low) + same + my_quicksort(high)
+
+def my_binarysearch(s, l, r, x):
+    # iterative binary search
+    while l <= r:
+        mid = l + (r-1) // 2;
+
+        if s[mid] == x:
+            return mid
+
+        elif s[mid] < x:
+            l = mid + 1
+
+        else:
+            r = mid - 1
+
+    return -1
+
+# def main():
+#     try:
+#         pass
+#     except Exception as e:
+#         raise e
 
 # naming csv files
 rideshare = "Boston_Lyft_Uber_Data.csv"
@@ -211,16 +270,25 @@ lst1= []
 count = 0
 for i in sample_data_A:
     if i not in lst1:
-        count = count + 1
+        count += 1
         lst1.append(i)
 
 print('Output list: %s' % lst1)
 print('No. of unique items are: %d' % count)
 
+print('{} is before sorted(), {} is after sorted()'.format(sample_data_A, sorted(sample_data_A)))
+
+x = 10
+s = sorted(sample_data_B)
+result = my_binarysearch(s, 0, my_len(sample_data_B)-1, x)
+if result != -1:
+    print("Element is present at index %d" % result)
+else:
+    print("Element is not present in array")
+
 # set to true to see menu
 # turned off for sample data testing
-loop = False
-while loop:
+while False:
     print_menu()
     choice = input("Enter your choice [1-15]: ")
     if choice == 1:
@@ -278,3 +346,6 @@ while loop:
     else:
         raw_input("Wrong option selection. Please enter any key to try again...")
         
+# entry point of the script
+# if __name__ == "__main__":
+#     main()
