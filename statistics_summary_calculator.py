@@ -279,16 +279,6 @@ for i in sample_data_A:
 print('Output list: %s' % lst1)
 print('No. of unique items are: %d' % count)
 
-print('{} is before sorted(), {} is after sorted()'.format(sample_data_A, sorted(sample_data_A)))
-
-x = 10
-s = sorted(sample_data_B)
-result = my_binarysearch(s, 10)
-if result != -1:
-    print("Element is present at index %d" % result)
-else:
-    print("Element is not present in array")
-
 # set to true to see menu
 # turned off for sample data testing
 while False:
