@@ -170,21 +170,24 @@ def my_quicksort(s):
 
     return my_quicksort(low) + same + my_quicksort(high)
 
-def my_binarysearch(s, l, r, x):
+def my_binarysearch(s, searchee):
     # iterative binary search
-    while l <= r:
-        mid = l + (r-1) // 2;
+    low = 0
+    high = my_len(s) - 1
+    mid = 0
 
-        if s[mid] == x:
+    while low <= high:
+        mid = (high + low) // 2
+
+        if s[mid] < x:
+            low = mid + 1
+        elif s[mid] > x:
+            high = mid - 1
+        else:
             return mid
 
-        elif s[mid] < x:
-            l = mid + 1
-
-        else:
-            r = mid - 1
-
     return -1
+    
 
 # def main():
 #     try:
@@ -280,7 +283,7 @@ print('{} is before sorted(), {} is after sorted()'.format(sample_data_A, sorted
 
 x = 10
 s = sorted(sample_data_B)
-result = my_binarysearch(s, 0, my_len(sample_data_B)-1, x)
+result = my_binarysearch(s, 10)
 if result != -1:
     print("Element is present at index %d" % result)
 else:
