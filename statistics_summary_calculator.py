@@ -5,7 +5,6 @@
 # DATE: 11/01/2021                                                            #
 # STUDENT 1: Dominic Fanucchi                                                 #
 # STUDENT 2: Ronaldo Mojica                                                   #
-# STUDENT 3: Arjun Ynostroza                                                  #
 # DESCRIPTION: IMPLEMENTATION OF A STATISTICS SUMMARY CALCULATOR              #
 #-----------------------------------------------------------------------------#
 
@@ -15,6 +14,7 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def my_len(s):
+    # naive method to count length of data container
     counter = 0
     for item in s:
         counter+=1
@@ -52,8 +52,8 @@ def my_median(s):
     n = my_len(s)
     index = n // 2
     if n % 2:
-        return sorted(s)[index]
-    return sum(sorted(s)[index - 1:index + 1]) / 2
+        return my_quicksort(s)[index]
+    return sum(my_quicksort(s)[index - 1:index + 1]) / 2
 
 from collections import Counter
 def my_mode(s):
@@ -61,48 +61,47 @@ def my_mode(s):
     return [k for k, v in c.items() if v== c.most_common(1)[0][1]]
 
 def my_20P(s):
-    return sorted(s)[int(math.ceil(0.2 * len(s)))]
+    return my_quicksort(s)[int(math.ceil(0.2 * len(s)))]
     # use this return if indexing begins at 1
     # return sorted(s)[int(math.ceil(0.4 * len(s)))-1]
 
 def my_40P(s):
-    return sorted(s)[int(math.ceil(0.4 * len(s)))]
+    return my_quicksort(s)[int(math.ceil(0.4 * len(s)))]
     # use this return if indexing begins at 1
     # return sorted(s)[int(math.ceil(0.4 * len(s)))-1]
 
 def my_50P(s):
-    return sorted(s)[int(math.ceil(0.5 * len(s)))]
+    return my_quicksort(s)[int(math.ceil(0.5 * len(s)))]
     # use this return if indexing begins at 1
     # return sorted(s)[int(math.ceil(0.5 * len(s)))-1]
 
 def my_60P(s):
-    return sorted(s)[int(math.ceil(0.6 * len(s)))]
+    return my_quicksort(s)[int(math.ceil(0.6 * len(s)))]
     # use this return if indexing begins at 1
     # return sorted(s)[int(math.ceil(0.6 * len(s)))-1]
 
 def my_80P(s):
-    return sorted(s)[int(math.ceil(0.8 * len(s)))]
+    return my_quicksort(s)[int(math.ceil(0.8 * len(s)))]
     # use this return if indexing begins at 1
     # return sorted(s)[int(math.ceil(0.8 * len(s)))-1]
 
 def my_count(s):
+    # could delete this function definition and just call my_len() instead
     return my_len(s)
-    # ask if using built in functions is okay
-    # if not, write function definition below
 
 def my_min(s):
+    # finind min of data structure elements is as easy as picking the first
+    # element after sorting
     return min(s)
-    # ask if using built in functions is okay
-    # if not, write function definition below
     
 def my_max(s):
+    # finding max of data structure elements is as easy as picking the last
+    # element after sorting
     return max(s)
-    # ask if using built in functions is okay
-    # if not, write function definition below
 
 def my_variance(s):
     # step 1:
-    ordered = sorted(s)
+    ordered = my_quicksort(s)
     n = my_mean(ordered)
     # step 2:
     difference = [0] * my_len(s)
@@ -123,7 +122,7 @@ def my_variance(s):
 
 def my_standard_deviation(s):
     # step 1:
-    ordered = sorted(s)
+    ordered = my_quicksort(s)
     n = my_mean(ordered)
     # step 2:
     difference = [0] * my_len(s)
@@ -278,6 +277,8 @@ for i in sample_data_A:
 
 print('Output list: %s' % lst1)
 print('No. of unique items are: %d' % count)
+
+print("{}".format(my_quicksort(sample_data_B)))
 
 # set to true to see menu
 # turned off for sample data testing
