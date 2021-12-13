@@ -11,6 +11,7 @@
 import csv, sys, os, math, array as arr, traceback
 
 def clear_screen():
+    # used to clear the screen so that the display is clean
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def my_len(s):
@@ -50,15 +51,36 @@ def my_mean(s):
 
 def my_median(s):
     n = my_len(s)
-    index = n // 2
+    index = n // 2 # <-- floor division operator to return an int
     if n % 2:
-        return my_quicksort(s)[index]
-    return sum(my_quicksort(s)[index - 1:index + 1]) / 2
+        return my_quicksort(s)[index] # odd number
+    return sum(my_quicksort(s)[index - 1:index + 1]) / 2 # even number
 
-from collections import Counter
-def my_mode(s):
-    c = Counter(s)
-    return [k for k, v in c.items() if v== c.most_common(1)[0][1]]
+# from collections import Counter
+def my_mode(dataframe):
+    sorted_frame = my_quicksort(dataframe)
+    
+    # empty list to append the count of each numbers occurence in the dataframe
+    tmp_lst = []
+    i = 0
+    while i < my_len(sorted_frame) :
+        tmp_lst.append(sorted_frame.count(sorted_frame[i]))
+        i += 1
+    
+    # create temporary dictionary to hold the relationship between
+    # the sorted list and its occurences within the datafram
+    tmp_dataframe_dict = dict(zip(sorted_frame, tmp_lst))
+    
+    # final dictionary holds all the highest (key, value) occurences from the
+    # temporary dictionary
+    dataframe_dict = { 
+        key for (key, value) in tmp_dataframe_dict.items() 
+        if value == max(tmp_lst) 
+    }
+
+    # casting the dict as a string and removing unncessary characters
+    output = str(dataframe_dict).strip("set([]), ")
+    return output
 
 def my_20P(s):
     return my_quicksort(s)[int(math.ceil(0.2 * len(s)))]
@@ -88,16 +110,6 @@ def my_80P(s):
 def my_count(s):
     # could delete this function definition and just call my_len() instead
     return my_len(s)
-
-def my_min(s):
-    # finind min of data structure elements is as easy as picking the first
-    # element after sorting
-    return min(s)
-    
-def my_max(s):
-    # finding max of data structure elements is as easy as picking the last
-    # element after sorting
-    return max(s)
 
 def my_variance(s):
     # step 1:
@@ -141,22 +153,19 @@ def my_standard_deviation(s):
     sd = variance ** 2
     return sd
 
-def my_unique(s):
-    return Counter(s)
-
 from random import randint as random
-def my_quicksort(s):
+def my_quicksort(dataframe):
     # if the input array is less than two elements then return the array
-    if my_len(s) < 2:
-        return s
+    if my_len(dataframe) < 2:
+        return dataframe
 
     # array's to hold elements while being sorted
     low, same, high = [], [], []
 
     # selecting pivot element at random
-    pivot = s[random(0, my_len(s) - 1)]
+    pivot = dataframe[random(0, my_len(dataframe) - 1)]
 
-    for item in s:
+    for item in dataframe:
         # Elements that are smaller than the `pivot` go to the 'low' list.
         # Elements that are larger than 'pivot' go to the 'high' list.
         # Elements that are equal to 'pivot' go to the 'same' list.
@@ -186,13 +195,35 @@ def my_binarysearch(s, searchee):
             return mid
 
     return -1
-    
 
-# def main():
-#     try:
-#         pass
-#     except Exception as e:
-#         raise e
+def my_unique(dataframe):
+    sorted_frame = my_quicksort(dataframe)
+    tmp_dataframe= []
+    count = 0
+    for i in sorted_frame:
+        if i not in tmp_dataframe:
+            count += 1
+            tmp_dataframe.append(i)
+    return count
+
+def my_min(dataframe):
+    # fining min of data structure elements is as easy as picking the first
+    # element after sorting
+    tmp = my_quicksort(dataframe)
+    return tmp[0]
+    
+def my_max(dataframe):
+    # finding max of data structure elements is as easy as picking the last
+    # element after sorting
+    tmp = my_quicksort(dataframe)
+    return tmp[-1] # <-- grabbed last item using negative indexing
+
+#TODO:
+def main():
+    try:
+        pass
+    except Exception as e:
+        pass
 
 # naming csv files
 rideshare = "Boston_Lyft_Uber_Data.csv"
@@ -243,42 +274,23 @@ for col in file:
 # 			print("%10s"%col),
 # 	print('\n')
 
-
-sample_data_A = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5]
-sample_data_B = [4, 8, 6, 5, 3, 2, 8, 9, 2, 5, 10, 2, 13, 20, 5, 2, 15, 1, 0]
-sample_data_C = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-print("Descriptor    Column A    Column B")
-print("**********    ********    ********")
-print('Count         {a:8d}    {b:8d}'.format(a = my_count(col_A), b = my_count(col_B)))
-print('Unique        {a:8s}    {b:8s}'.format(a = my_unique(sample_data_A), b = my_unique(sample_data_B)))
-print('Mean          {a:8d}    {b:8d}'.format(a = my_mean(col_A), b = my_mean(col_B)))
-print('Median        {a:8d}    {b:8d}'.format(a = my_median(col_A), b = my_median(col_B)))
-print('Mode          {a:8s}    {b:8s}'.format(a = my_mode(col_A), b = my_mode(col_B)))
-print('SD            {a:8.2f}    {b:8.2f}'.format(a = my_standard_deviation(col_A), b = my_standard_deviation(col_B)))
-print('Variance      {a:8.2f}    {b:8.2f}'.format(a = my_variance(col_A), b = my_variance(col_B)))
-print('Minimum       {a:8d}    {b:8d}'.format(a = my_min(col_A), b = my_min(col_B)))
-print('P20           {a:8d}    {b:8d}'.format(a = my_20P(col_A), b = my_20P(col_B)))
-print('P40           {a:8d}    {b:8d}'.format(a = my_40P(col_A), b = my_40P(col_B)))
-print('P50           {a:8d}    {b:8d}'.format(a = my_50P(col_A), b = my_50P(col_B)))
-print('P60           {a:8d}    {b:8d}'.format(a = my_60P(col_A), b = my_60P(col_B)))
-print('P80           {a:8d}    {b:8d}'.format(a = my_80P(col_A), b = my_80P(col_B)))
-print('Maximum       {a:8d}    {b:8d}'.format(a = my_max(col_A), b = my_max(col_B)))
+print("Descriptor    Column A                          Column B")
+print("**********    ********                          ********")
+print('Count         {a:<30d}    {b:<30d}'.format(a = my_count(col_A), b = my_count(col_B)))
+print('Unique        {a:<30d}    {b:<30d}'.format(a = my_unique(col_A), b = my_unique(col_B)))
+print('Mean          {a:<30d}    {b:<30d}'.format(a = my_mean(col_A), b = my_mean(col_B)))
+print('Median        {a:<30d}    {b:<30d}'.format(a = my_median(col_A), b = my_median(col_B)))
+print('Mode          {a:<30s}    {b:<30s}'.format(a = my_mode(col_A), b = my_mode(col_B)))
+print('SD            {a:<30.2f}    {b:<30.2f}'.format(a = my_standard_deviation(col_A), b = my_standard_deviation(col_B)))
+print('Variance      {a:<30.2f}    {b:<30.2f}'.format(a = my_variance(col_A), b = my_variance(col_B)))
+print('Minimum       {a:<30d}    {b:<30d}'.format(a = my_min(col_A), b = my_min(col_B)))
+print('P20           {a:<30d}    {b:<30d}'.format(a = my_20P(col_A), b = my_20P(col_B)))
+print('P40           {a:<30d}    {b:<30d}'.format(a = my_40P(col_A), b = my_40P(col_B)))
+print('P50           {a:<30d}    {b:<30d}'.format(a = my_50P(col_A), b = my_50P(col_B)))
+print('P60           {a:<30d}    {b:<30d}'.format(a = my_60P(col_A), b = my_60P(col_B)))
+print('P80           {a:<30d}    {b:<30d}'.format(a = my_80P(col_A), b = my_80P(col_B)))
+print('Maximum       {a:<30d}    {b:<8d}'.format(a = my_max(col_A), b = my_max(col_B)))
 print ""
-
-#actual unique count<----------------gives the count of remaining unique numbers
-print("Input list: %s" % sample_data_A)
-lst1= []
-count = 0
-for i in sample_data_A:
-    if i not in lst1:
-        count += 1
-        lst1.append(i)
-
-print('Output list: %s' % lst1)
-print('No. of unique items are: %d' % count)
-
-print("{}".format(my_quicksort(sample_data_B)))
 
 # set to true to see menu
 # turned off for sample data testing
@@ -341,5 +353,5 @@ while False:
         raw_input("Wrong option selection. Please enter any key to try again...")
         
 # entry point of the script
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
