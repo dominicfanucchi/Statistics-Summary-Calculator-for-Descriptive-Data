@@ -235,58 +235,6 @@ for col in file:
     col_A.append(int(col['Column A']))
     col_B.append(int(col['Column B']))
 
-#print('column A: ', col_A)
-#print('column B: ', col_B)
-
-# # initializing the titles and rows list
-# fields = []
-# rows = []
-
-# # reading csv files
-# with open(sample, 'r') as csvfile:
-# 	# creating a csv reader object
-# 	csvreader = csv.reader(csvfile)
-
-# 	# extracting field names through first row
-# 	fields = next(csvreader)
-
-# 	# extracting each data row one by one
-# 	for row in csvreader:
-# 		rows.append(row)
-
-# 	# get total number of rows
-# 	print("Total number of rows: %d\n"%(csvreader.line_num))
-
-# # printing the field names
-# print('Field names are: ' + ', '.join(field for field in fields))
-
-# # printing first 5 rows
-# print('\nFirst 5 rows are:\n')
-
-# for row in rows[:5]:
-# 	# parsing each column of a row
-# 	for col in row:
-# 		if col.isdigit():
-# 			print("%10s"%col),
-# 	print('\n')
-
-# print("Descriptor    Column A                            Column B")
-# print("**********    ********                            ********")
-# print('Count         {a:<32d}    {b:<32d}'.format(a = my_count(col_A), b = my_count(col_B)))
-# print('Unique        {a:<32d}    {b:<32d}'.format(a = my_unique(col_A), b = my_unique(col_B)))
-# print('Mean          {a:<32d}    {b:<32d}'.format(a = my_mean(col_A), b = my_mean(col_B)))
-# print('Median        {a:<32d}    {b:<32d}'.format(a = my_median(col_A), b = my_median(col_B)))
-# print('Mode          {a:<32s}    {b:<32s}'.format(a = my_mode(col_A), b = my_mode(col_B)))
-# print('SD            {a:<30.2f}      {b:<30.2f}'.format(a = my_standard_deviation(col_A), b = my_standard_deviation(col_B)))
-# print('Variance      {a:<30.2f}      {b:<30.2f}'.format(a = my_variance(col_A), b = my_variance(col_B)))
-# print('Minimum       {a:<32d}    {b:<32d}'.format(a = my_min(col_A), b = my_min(col_B)))
-# print('P20           {a:<32d}    {b:<32d}'.format(a = my_20P(col_A), b = my_20P(col_B)))
-# print('P40           {a:<32d}    {b:<32d}'.format(a = my_40P(col_A), b = my_40P(col_B)))
-# print('P50           {a:<32d}    {b:<32d}'.format(a = my_50P(col_A), b = my_50P(col_B)))
-# print('P60           {a:<32d}    {b:<32d}'.format(a = my_60P(col_A), b = my_60P(col_B)))
-# print('P80           {a:<32d}    {b:<32d}'.format(a = my_80P(col_A), b = my_80P(col_B)))
-# print('Maximum       {a:<32d}    {b:<32d}'.format(a = my_max(col_A), b = my_max(col_B)))
-# print ""
 
 def load_data(csv_path):
     """
@@ -302,7 +250,7 @@ def load_data(csv_path):
         # reads file line by line to python list of lists
         with open(csv_path, 'r') as f:
             lines = [x.strip().split(',') for x in f.readlines()]
-        # extracting columns (first) row to validate another rows by nu,ber of columns
+        # extracting columns (first) row to validate another rows by number of columns
         columns = lines[0]
         # validate another rows by nu,ber of columns. We are tying to avoid rows with different number of columns
         rows_of_the_valid_len = [x for x in lines if len(x) == len(columns)]
@@ -330,7 +278,7 @@ def clean_data(dataframe):
         digit_columns_indexes = []
 
         for column_index in range(len(dataframe[0])):
-            # merging all the data into one big string, replacing commas, spaces.
+            # merging all the data into one big string, replacing commas and spaces.
             columns_data = ''.join([x[column_index] for x in dataframe[1:]]).replace(',', '').replace('.', '').replace(
                 ' ', '')
             # checking if the string is numeric
@@ -348,7 +296,7 @@ def clean_data(dataframe):
         for row in dataframe:
             i += 1
             new_row = [row[i].strip() for i in digit_columns_indexes]
-            # checking for duplicate and add to the final df only if the row if now a duplicate and has no empty cells
+            # checking for duplicate and add to the final df only if the row is not a duplicate and has no empty cells
             try:
                 duplicate_detector_dict[','.join(new_row)]
                 continue
@@ -458,9 +406,9 @@ def main():
         # elif raw_input == "2":
         #     df = load_data(sample)
 
-        clear_screen()
+        # clear_screen()
         # data load
-        df = load_data(sample)
+        df = load_data(rideshare)
         print("Dataframe loaded")
 
         # data cleaning
@@ -468,11 +416,11 @@ def main():
         print("Dataframe cleaned\n")
 
         time.sleep(3)
-        clear_screen()
+        # clear_screen()
 
         loop = True
         while loop:
-            time.sleep(3.5)
+            # time.sleep(3.5)
             print_menu()
             choice = raw_input("Enter your choice [1-14, q, m, l or s]: ")
             if choice == "1":
@@ -480,13 +428,13 @@ def main():
                 print "Count has been selected!\n\n\n"
                 print("Descriptor    Column A                            Column B")
                 print("**********    ********                            ********")
-                print('Count         {a:<32d}    {b:<32d}'.format(a = my_count(), b = my_count()))
+                print('Count         {a:<32d}    {b:<32d}'.format(a = my_count(col_A), b = my_count(col_B)))
             elif choice == "2":
                 clear_screen()
                 print "Unique has been selected!\n\n\n"
                 print("Descriptor    Column A                            Column B")
                 print("**********    ********                            ********")
-                print('Unique        {a:<32d}    {b:<32d}'.format(a = my_unique(), b = my_unique()))
+                print('Unique        {a:<32d}    {b:<32d}'.format(a = my_unique(col_A), b = my_unique(col_B)))
             elif choice == "3":
                 clear_screen()
                 print "Mean has been selected!\n\n\n"
@@ -569,12 +517,36 @@ def main():
                 clear_screen()
                 pass
             elif choice == "l":
-                pass
+                # initializing the titles and rows list
+                fields = []
+                rows = []
+                with open(sample, 'r') as csvfile:
+                    # creating a csv reader object
+                    csvreader = csv.reader(csvfile)
+
+                    # extracting field names through first row
+                    fields = next(csvreader)
+
+                    # extracting each data row one by one
+                    for row in csvreader:
+                        rows.append(row)
+                # printing first 10 rows
+                print('\nFirst 10 rows are:\n')
+                # printing the field names
+                print(' ' + ', '.join(field for field in fields))
+                for row in rows[:10]:
+                    # parsing each column of a row
+                    for col in row:
+                        if col.isdigit():
+                            print("%10s"%col),
+                    print('\n')
             elif choice == 's':
                 # Search data set
                 print('Please enter Search (N, "D") command\nD can be a column name or "DataSet" if you want to search DataSet')
                 print('Example: Search in column\n\t$ Search (25, "Column1")')
                 print('Example: Search in data set\n\t$ Search (25, "DataSet")')
+
+                print("Available Rows: {}".format(str(clean_df[0])))
 
                 # reading command in while loop
                 while True:
